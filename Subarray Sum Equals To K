@@ -1,0 +1,18 @@
+from itertools import accumulate
+import collections
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        prefix = list(accumulate(nums));
+        
+        sums=collections.defaultdict(int);
+        ans=0;
+        for i in range(len(nums)):
+            
+            curr_sum=prefix[i];
+            if((curr_sum-k) in sums.keys()):
+                ans+=sums[curr_sum-k];
+            sums[curr_sum]+=1;
+
+            if(curr_sum==k):
+                ans+=1;
+        return ans;
