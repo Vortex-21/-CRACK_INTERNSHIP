@@ -1,0 +1,16 @@
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+        steps=[];
+        maxx=-1;
+        for i in range(len(nums)):
+            maxx=max(maxx,nums[i]+i)
+            steps.append(maxx);
+        
+        for i in range(len(nums)):
+            if(steps[i-1] < i):#<----------------------------------------------------------------------------|
+                return 0;      #                                                                             |  
+        return 1;               #                                                                            |  
+                                #                                                                            |
+                                #                                                                            |
+#steps array contains the maximum index reachable from the current position                                  |
+#so basically we are checking if we can reach the current index from some previous index <-------------------|
